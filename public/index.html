@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BTT System</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">BTT SYSTEM / PROTÓTIPO</p>
+          <h1>Tradução em blocos</h1>
+        </div>
+        <div id="connectionBadge" class="status muted">Configure um provedor</div>
+      </header>
+
+      <section class="panel connection-panel">
+        <div>
+          <p class="eyebrow">PROVEDOR DE IA</p>
+          <h2>Conecte uma API</h2>
+          <p>A chave fica salva localmente neste navegador. Ela não é enviada para o BTT System além das chamadas à API escolhida.</p>
+        </div>
+        <div class="connection-fields">
+          <label>Provedor
+            <select id="providerSelect">
+              <option value="openrouter">OpenRouter</option>
+              <option value="openai">OpenAI API</option>
+            </select>
+          </label>
+          <label>Chave da API
+            <input id="apiKey" type="password" autocomplete="off" placeholder="Cole sua chave aqui" />
+          </label>
+        </div>
+        <p id="connectionMessage" class="hint"></p>
+      </section>
+
+      <section id="workspace" class="workspace hidden">
+        <div class="controls panel">
+          <label>Modelo
+            <select id="modelSelect"></select>
+          </label>
+          <label>Idioma original
+            <input id="sourceLanguage" value="Inglês" />
+          </label>
+          <label>Idioma de destino
+            <input id="targetLanguage" value="Português do Brasil" />
+          </label>
+          <label class="file-picker">Arquivo
+            <input id="fileInput" type="file" accept=".txt,.md,.markdown,.pdf,.epub,text/plain,text/markdown,application/pdf,application/epub+zip" />
+          </label>
+        </div>
+
+        <section id="pagePanel" class="panel page-panel hidden">
+          <div class="section-heading"><h2 id="pagePanelTitle">Páginas do PDF</h2><button id="togglePagesButton" class="text-button">Selecionar todas</button></div>
+          <div id="pageSelection" class="page-selection"></div>
+        </section>
+
+        <div class="editor-grid">
+          <section class="panel editor-panel">
+            <div class="section-heading"><h2>Texto original</h2><span id="charCount">0 caracteres</span></div>
+            <textarea id="sourceText" placeholder="Cole aqui o texto ou carregue um arquivo..."></textarea>
+            <div class="action-row">
+              <button id="translateButton" class="button primary">Traduzir</button>
+              <button id="pauseButton" class="button secondary" disabled>Pausar</button>
+              <button id="clearButton" class="button secondary">Limpar</button>
+            </div>
+            <p id="progress" class="hint"></p>
+            <p id="saveStatus" class="hint">Seções salvas localmente.</p>
+          </section>
+          <section class="panel editor-panel">
+            <div class="section-heading"><h2>Tradução</h2><button id="copyButton" class="text-button">Copiar</button></div>
+            <textarea id="resultText" readonly placeholder="A tradução aparecerá aqui..."></textarea>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
